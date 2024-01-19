@@ -7,7 +7,7 @@ sudo apt update
 sudo apt install gpg snapd apt-transport-https curl wget -y
 
 #Git
-sudo apt install git-all -y
+sudo apt install git -y
 
 #Nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
@@ -20,12 +20,12 @@ sudo apt install p7zip-full p7zip-rar -y
 sudo snap install p7zip-desktop
 
 #Vlc
-sudo snap install vlc
+#sudo snap install vlc
 
 #Socials: Discord, Slack, Telegram
-sudo snap install discord
-sudo snap install slack
-sudo snap install telegram-desktop
+#sudo snap install discord
+#sudo snap install slack
+#sudo snap install telegram-desktop
 
 #Brave Repo
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
