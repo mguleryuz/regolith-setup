@@ -6,4 +6,4 @@ source ../utils.sh
 sudo apt update
 
 #Dependencies
-sudo apt install i3lock -y
+sudo apt install gnome-terminal network-manager gnome-disk-utility swaylock nano nautilus gedit gnome-tweaks gparted gnome-system-monitor -y

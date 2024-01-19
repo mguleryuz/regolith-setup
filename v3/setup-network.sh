@@ -1,20 +1,16 @@
 #!/bin/bash
 
-# Install NetworkManager if it's not already installed
-echo "Installing NetworkManager..."
-sudo apt update
-sudo apt install -y network-manager
-
 # Modify Netplan to use NetworkManager
-echo "Configuring Netplan to use NetworkManager..."
-NETPLAN_FILE=$(ls /etc/netplan/*.yaml | head -n1)
-if [ -f "$NETPLAN_FILE" ]; then
-    echo "Modifying $NETPLAN_FILE..."
-    sudo sed -i 's/renderer: .*/renderer: NetworkManager/' "$NETPLAN_FILE"
-    sudo netplan apply
-else
-    echo "No Netplan configuration file found. Skipping this step."
-fi
+NETPLAN_FILE="/etc/netplan/01-netcfg.yaml"
+
+# Define the content of the Netplan configuration file
+NETPLAN_CONTENT="network:
+  version: 2
+  renderer: NetworkManager"
+
+# Create or overwrite the Netplan configuration file with the specified content
+echo "$NETPLAN_CONTENT" | sudo tee "$NETPLAN_FILE"
+sudo netplan apply
 
 # Modify NetworkManager configuration
 echo "Configuring NetworkManager..."
@@ -24,7 +20,7 @@ if [ -f "$NM_CONF" ]; then
     sudo sed -i '/^\[ifupdown\]$/,/^\[/ s/managed=false/managed=true/' "$NM_CONF"
 else
     echo "NetworkManager.conf not found. Creating file with proper configuration."
-    echo -e "[main]\nplugins=ifupdown,keyfile\n\n[ifupdown]\nmanaged=true" >"$NM_CONF"
+    echo -e "[main]\nplugins=ifupdown,keyfile\n\n[ifupdown]\nmanaged=true" | sudo tee "$NM_CONF"
 fi
 
 # Restart NetworkManager
