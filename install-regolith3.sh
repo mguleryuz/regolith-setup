@@ -12,6 +12,4 @@ https://regolith-desktop.org/release-3_0-ubuntu-lunar-amd64 lunar main" |
 
 #Update apt and install Regolith
 sudo apt update
-sudo apt install regolith-desktop regolith-session-flashback regolith-look-lascaille
-
-sudo apt reboot now
+sudo apt install regolith-desktop regolith-session-sway regolith-look-i3-default
