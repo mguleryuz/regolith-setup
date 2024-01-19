@@ -6,4 +6,4 @@ source ../utils.sh
 sudo apt update
 
 #Dependencies
-sudo apt install gnome-terminal network-manager gnome-disk-utility nano nautilus gedit gnome-tweaks gparted gnome-system-monitor -y
+sudo apt install viewnior gnome-terminal network-manager gnome-disk-utility nano nautilus gedit gnome-tweaks gparted gnome-system-monitor -y

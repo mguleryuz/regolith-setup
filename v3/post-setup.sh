@@ -15,4 +15,8 @@ bash "$current_dir/setup-network.sh"
 echo "Running setup-config.sh..."
 bash "$current_dir/setup-config.sh"
 
+# Run setup-sddm.sh
+echo "Running setup-sddm.sh..."
+bash "$current_dir/setup-sddm.sh"
+
 echo "All scripts executed successfully."
