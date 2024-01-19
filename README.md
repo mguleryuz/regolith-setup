@@ -1,3 +1,7 @@
-chmod +x <sh name>
+Regolith v3 scripts are meant for Ubuntu 23.04 Server installation.
 
-<name>.sh to run
+```
+sudo chmod +x prep.sh && ./prep.sh
+
+./run.sh
+```
