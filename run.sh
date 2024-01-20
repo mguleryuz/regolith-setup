@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Get the directory of the currently running script
+script_path=$(dirname "$0")
+
 # Function to list and run scripts
 list_and_run_scripts() {
     local dir=$1
@@ -30,8 +33,8 @@ list_and_run_scripts() {
     bash "${file_array[$file_num]}"
 }
 
-# Find all directories starting with "v" and .sh files
-items=$(find . -maxdepth 1 \( -type d -name "v*" -o -type f -name "*.sh" ! -name "run.sh" ! -name "prep.sh" \))
+# Find all directories starting with "v" and .sh files in the script's directory
+items=$(find "$script_path" -maxdepth 1 \( -type d -name "v*" -o -type f -name "*.sh" ! -name "run.sh" ! -name "prep.sh" \))
 
 # Convert items to an array
 item_array=($items)
@@ -55,4 +58,3 @@ else
     # If it's a file, run it
     bash "${item_array[$item_num]}"
 fi
-back
