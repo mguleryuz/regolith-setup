@@ -1,4 +1,4 @@
-# Regolith v3 Scripts
+# Regolith Scripts
 
 V2 scripts are designed regolith 2.2 iso installation. ( deprectaded )
 

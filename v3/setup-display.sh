@@ -2,15 +2,19 @@
 
 script_path=$(dirname "$0")
 add_gnome_startup_command=$script_path/../add_gnome_startup_command.sh
+add_and_set_resolution=$script_path/../add-and-set-resolution.sh
 source $script_path/../utils/index.sh
 
-#fix flickering ( note// buggy )
-#sudo cp $script_path/20-intel.conf /etc/X11/xorg.conf.d/20-intel.conf
+#fix flickering
+sudo apt update
+sudo apt install linux-oem-20.04 -y
+# ( note// buggy ) disabled
+#sudo cp $script_path/../utils/20-intel.conf /etc/X11/xorg.conf.d/20-intel.conf
 
 # Add Reselution Setter Script to sddm
 SDDM_XSETUP_DIR=/usr/share/sddm/scripts
 # Copy the script to the sddm scripts directory
-sudo cp $script_path/../add-and-set-resolution.sh $SDDM_XSETUP_DIR/add-and-set-resolution.sh
+sudo cp $add_and_set_resolution $SDDM_XSETUP_DIR/add-and-set-resolution.sh
 # Make the script executable
 sudo chmod +x $SDDM_XSETUP_DIR/add-and-set-resolution.sh
 
