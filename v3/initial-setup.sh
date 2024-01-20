@@ -22,7 +22,7 @@ if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
 
     # Update apt and install Regolith
     sudo apt update
-    sudo apt install regolith-desktop regolith-look-ayu-dark
+    sudo apt install regolith-desktop regolith-look-default i3xrocks-battery
 
     # Ask the user if they want to use Wayland, X11, or both
     read -p "Do you want to use Wayland, X11, or both? (w/x/b) " display_manager
