@@ -24,16 +24,18 @@ if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
     sudo apt update
     sudo apt install regolith-desktop regolith-look-ayu-dark
 
-    # Ask the user if they want to use Wayland or X11
-    read -p "Do you want to use Wayland or X11? (w/x) " display_manager
+    # Ask the user if they want to use Wayland, X11, or both
+    read -p "Do you want to use Wayland, X11, or both? (w/x/b) " display_manager
 
     # Install the appropriate Regolith session based on the user's response
     if [[ $display_manager == [wW] ]]; then
         sudo apt install regolith-session-sway
     elif [[ $display_manager == [xX] ]]; then
         sudo apt install regolith-session-flashback
+    elif [[ $display_manager == [bB] ]]; then
+        sudo apt install regolith-session-sway regolith-session-flashback
     else
-        echo "Invalid input. Please enter 'w' for Wayland or 'x' for X11."
+        echo "Invalid input. Please enter 'w' for Wayland, 'x' for X11, or 'b' for both."
     fi
 else
     echo "Setup cancelled."

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source utils.sh
+script_path=$(dirname "$0")
+source $script_path/utils/index.sh
 
 #Prep
 sudo apt update

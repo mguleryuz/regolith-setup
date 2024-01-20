@@ -10,7 +10,7 @@ sudo apt update
 DEBIAN_FRONTEND=noninteractive sudo apt install -y sddm
 
 # Change the background of default theme
-BG_PATH="/usr/share/backgrounds/webb-art0.png"
+BG_PATH="/usr/share/backgrounds/initial-background.png"
 THEME_CONF="/usr/share/sddm/themes/ubuntu-theme/theme.conf"
 
 # Replace the background path in the theme.conf file

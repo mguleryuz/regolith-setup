@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source ../utils.sh
-
 #Prep
 sudo apt update
 

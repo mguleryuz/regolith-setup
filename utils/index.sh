@@ -12,23 +12,25 @@ ask_and_run() {
     fi
 }
 
-function update_config() {
+function update_key_value() {
     # Get the arguments
     local key=$1
     local value=$2
     local config_file=$3
 
     # Check if the key exists in the file
-    if sudo grep -q "^$key=" $config_file; then
+    if sudo grep -q "^$key" $config_file; then
         # If the key exists, replace its value
-        sudo sed -i "s|^$key=.*|$key=$value|" $config_file
+        sudo sed -i "s|^$key.*|$key$value|" $config_file
     else
-        # If the key doesn't exist, add the key-value pair to the file
-        echo -e "$key=$value" | sudo tee -a $config_file
+        # If the key doesn't exist, add the key-value pair at the top of the file, but after the commented lines
+        local comments=$(sed -n '/^#/p' $config_file)
+        local content=$(sed '/^#/d' $config_file)
+        echo -e "$comments\n$key$value\n$content" | sudo tee $config_file
     fi
 }
 
-function update_config_with_section() {
+function update_config_section() {
     # Get the arguments
     local section=$1
     local key=$2
@@ -42,7 +44,9 @@ function update_config_with_section() {
             sudo sed -i "/^\[$section\]/a $key=$value" $config_file
         fi
     else
-        # If the section doesn't exist, add the section and the key-value pair
-        echo -e "[$section]\n$key=$value" | sudo tee -a $config_file
+        # If the section doesn't exist, add the section and the key-value pair at the top of the file, but after the commented lines
+        local comments=$(sed -n '/^#/p' $config_file)
+        local content=$(sed '/^#/d' $config_file)
+        echo -e "$comments\n[$section]\n$key=$value\n$content" | sudo tee $config_file
     fi
 }
