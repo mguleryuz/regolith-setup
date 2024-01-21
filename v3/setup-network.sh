@@ -1,5 +1,9 @@
 #!/bin/bash
 
+sudo apt update
+
+sudo apt install network-manager
+
 # Modify Netplan to use NetworkManager
 NETPLAN_FILE="/etc/netplan/01-netcfg.yaml"
 
@@ -27,7 +31,9 @@ else
   echo -e "[main]\nplugins=ifupdown,keyfile\n\n[ifupdown]\nmanaged=true" | sudo tee "$NM_CONF"
 fi
 
-# Disable NetworkManager-wait-online.service ( for faster boot time )
+# Disable systemd-networkd service ( since we have NM active now )
+sudo systemctl stop systemd-networkd
+sudo systemctl disable systemd-networkd
 sudo systemctl disable systemd-networkd-wait-online.service
 
 # Restart NetworkManager
