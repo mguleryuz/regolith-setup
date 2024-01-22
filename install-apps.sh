@@ -6,29 +6,40 @@ source $script_path/utils/index.sh
 #Prep
 sudo apt update
 
+echo "Do you want to install: Utils ? (y/n)"
+read install_utils
+
+echo "Do you want to install: Socials ? (y/n)"
+read install_socials
+
+echo "Do you want to install: Brave ? (y/n)"
+read install_brave
+
+echo "Do you want to install: Vscode ? (y/n)"
+read install_vscode
+
+echo "Do you want to install: 1Password ? (y/n)"
+read install_1password
+
 #Dependencies // snapd:all, wget:all curl:all, apt-transport-https:vscode, gpg:vscode
 sudo apt install gpg snapd apt-transport-https curl wget -y
 
-#Nvm & Bun
-ask_and_run "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash"
-ask_and_run "curl -fsSL https://bun.sh/install | bash"
+#Utils
+if [ "$install_utils" = "y" ]; then
+    sudo apt install p7zip-full p7zip-rar -y
+    sudo snap install p7zip-desktop
+    sudo snap install vlc
+fi
 
-#Git, 7zip
-sudo apt install git -y
-sudo apt install p7zip-full p7zip-rar -y
-
-#Snaps:
-ask_and_run "sudo snap install vlc"
-ask_and_run "sudo snap install p7zip-desktop"
-ask_and_run "sudo snap install discord"
-ask_and_run "sudo snap install slack"
-ask_and_run "sudo snap install telegram-desktop"
-#===================================================================================================
+#Socials:
+if [ "$install_socials" = "y" ]; then
+    sudo snap install discord
+    sudo snap install slack
+    sudo snap install telegram-desktop
+fi
 
 #Brave
-echo "Do you want to install: Brave ? (y/n)"
-read answer
-if [ "$answer" = "y" ]; then
+if [ "$install_brave" = "y" ]; then
     sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 
     echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
@@ -36,12 +47,9 @@ if [ "$answer" = "y" ]; then
     sudo apt update
     sudo apt install brave-browser -y
 fi
-#===================================================================================================
 
 #Vscode
-echo "Do you want to install: Vscode ? (y/n)"
-read answer
-if [ "$answer" = "y" ]; then
+if [ "$install_vscode" = "y" ]; then
     wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >packages.microsoft.gpg
     sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
     sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
@@ -50,12 +58,9 @@ if [ "$answer" = "y" ]; then
     sudo apt update
     sudo apt install code -y
 fi
-#===================================================================================================
 
 #1Password
-echo "Do you want to install: 1Password ? (y/n)"
-read answer
-if [ "$answer" = "y" ]; then
+if [ "$install_1password" = "y" ]; then
     curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
 
     echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main' | sudo tee /etc/apt/sources.list.d/1password.list
@@ -68,9 +73,6 @@ if [ "$answer" = "y" ]; then
     sudo apt update
     sudo apt install 1password -y
 fi
-#===================================================================================================
 
 #Done
 echo "Done: Installed all dependencies and apps."
-echo "Please run the following commands to finish setup:"
-echo "source ~/.bashrc"
