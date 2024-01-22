@@ -4,20 +4,11 @@ echo "Updating and upgrading system packages..."
 sudo apt update
 
 echo "Installing ALSA, PulseAudio, and pavucontrol..."
-sudo apt install -y alsa-base alsa-utils pulseaudio pulseaudio-utils pavucontrol
+sudo apt install alsa-base alsa-utils pulseaudio pulseaudio-utils pavucontrol -y
 
-# Checks if the script is being run in a user session with D-Bus
-if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
-    echo "D-Bus session is available."
-    # Enable PulseAudio for the current user
-    systemctl --user enable pulseaudio
-    systemctl --user start pulseaudio
-else
-    echo "D-Bus session is not available. Trying to start PulseAudio for the specified user: $USER"
-    # Trying to start PulseAudio as a specific user
-    sudo -u $USER systemctl --user enable pulseaudio
-    sudo -u $USER systemctl --user start pulseaudio
-fi
+# Enable PulseAudio for the current user
+systemctl --user enable pulseaudio
+systemctl --user start pulseaudio
 
 echo "Unmuting ALSA controls..."
 sudo -u $USER amixer sset Master unmute
@@ -44,7 +35,8 @@ default-channel-map = front-left,front-right
 default-fragments = 2
 default-fragment-size-msec = 125
 resample-method = soxr-vhq
-enable-lfe-remixing = no
+remixing-produce-lfe = no
+remixing-consume-lfe = no
 high-priority = yes
 nice-level = -11
 realtime-scheduling = yes
