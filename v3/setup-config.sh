@@ -7,8 +7,9 @@ background_path=$script_path/../initial-background.png
 cd $HOME/.config/regolith3/
 
 # Create the 'sway' & 'i3' directory if it doesn't exist
-mkdir -p sway/config.d
-mkdir -p i3/config.d
+for wm in sway i3; do
+    mkdir -p $wm/config.d
+done
 
 # Navigate back to the this dir
 cd -
@@ -23,8 +24,10 @@ echo "regolith.wallpaper.file: /usr/share/backgrounds/initial-background.png" >>
 echo "regolith.lockscreen.wallpaper.file: /usr/share/backgrounds/initial-background.png" >>$HOME/.config/regolith3/Xresources
 
 #i3 and sway Configs
-echo "focus_follows_mouse yes" >>$HOME/.config/regolith3/sway/config.d/40_i3-swap-focus
-echo "focus_follows_mouse yes" >>$HOME/.config/regolith3/i3/config.d/40_i3-swap-focus
+for wm in sway i3; do
+    echo "focus_follows_mouse yes" >>$HOME/.config/regolith3/$wm/config.d/40_i3-swap-focus
+    echo "exec xgamma -gamma 0.9" >>$HOME/.config/regolith3/$wm/config.d/80_compositor
+done
 
 #Set default lock ap as swaylock
 echo "wm.program.lock: /usr/bin/gtklock" >>~/.config/regolith3/Xresources
