@@ -27,6 +27,7 @@ echo "regolith.lockscreen.wallpaper.file: /usr/share/backgrounds/initial-backgro
 for wm in sway i3; do
     echo "focus_follows_mouse yes" >>$HOME/.config/regolith3/$wm/config.d/40_i3-swap-focus
     echo "exec xgamma -gamma 0.9" >>$HOME/.config/regolith3/$wm/config.d/80_compositor
+    echo "workspace_auto_back_and_forth yes" >>$HOME/.config/regolith3/i3/config.d/90-workspace-switch
 done
 
 #Set default lock ap as swaylock
