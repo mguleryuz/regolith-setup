@@ -5,11 +5,11 @@ script_path=$(dirname "$0")
 echo "Running Install Packages..."
 bash "$script_path/install-pkgs.sh"
 
-echo "Running Setup Audio..."
-bash "$script_path/setup-audio.sh"
-
 echo "Running Setup Network..."
 bash "$script_path/setup-network.sh"
+
+echo "Running Setup Audio..."
+bash "$script_path/setup-audio.sh"
 
 echo "Running Setup Config..."
 bash "$script_path/setup-config.sh"
