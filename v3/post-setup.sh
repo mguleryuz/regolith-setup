@@ -14,5 +14,4 @@ bash "$script_path/setup-config.sh"
 echo "Running Setup Display..."
 bash "$script_path/setup-display.sh"
 
-
 echo "All scripts executed successfully."

@@ -21,12 +21,11 @@ read install_vscode
 echo "Do you want to install: 1Password ? (y/n)"
 read install_1password
 
-#Dependencies // snapd:all, wget:all curl:all, apt-transport-https:vscode, gpg:vscode
-sudo apt install gpg snapd apt-transport-https curl wget -y
+#Dependencies Installed in previous steps // snapd:all, wget:all curl:all, apt-transport-https:vscode, gpg:vscode
 
 #Utils
 if [ "$install_utils" = "y" ]; then
-# TODO // p7zip-rar alternative
+    # TODO // p7zip-rar alternative
     sudo apt install p7zip-full -y
     sudo snap install p7zip-desktop
     sudo snap install vlc

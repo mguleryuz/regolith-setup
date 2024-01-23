@@ -9,10 +9,10 @@ sudo apt install snapd apt-transport-https -y
 sudo apt install git unzip synaptic viewnior gnome-terminal network-manager gnome-disk-utility nano nautilus gedit gnome-tweaks gparted gnome-system-monitor -y
 
 #Install BUN
-    echo "Installing BUN and NVM..."
-    curl -fsSL https://bun.sh/install | bash
+echo "Installing BUN and NVM..."
+curl -fsSL https://bun.sh/install | bash
 
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
 #Initilize git
 echo "Initializing git..."

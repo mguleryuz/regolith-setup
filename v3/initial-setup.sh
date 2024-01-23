@@ -28,7 +28,7 @@ fi
 # Check the user's response
 if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
     sudo apt update
-    sudo apt install gpg curl wget -y
+    # Dependencies Installed in previous steps //  gpg, wget
 
     # Register the Regolith public key to your local apt:
     wget -qO - https://regolith-desktop.org/regolith.key |
@@ -51,6 +51,5 @@ bash "$script_path/install-pkgs.sh"
 
 # Setup SDDM Display Manager
 bash "$script_path/setup-sddm.sh"
-
 
 echo "Initial Setup completed. Please reboot the system."
