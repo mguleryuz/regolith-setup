@@ -5,14 +5,6 @@ add_gnome_startup_command=$script_path/../utils/add_gnome_startup_command.sh
 add_and_set_resolution=$script_path/../utils/add-and-set-resolution.sh
 source $script_path/../utils/index.sh
 
-#fix flickering
-# sudo apt update
-# sudo apt install linux-oem-20.04 -y
-echo "options i915 enable_psr=0" | sudo tee -a /etc/modprobe.d/i915.conf >/dev/null
-sudo update-initramfs -u
-sudo update-grub
-#sudo cp $script_path/../utils/20-intel.conf /etc/X11/xorg.conf.d/20-intel.conf
-
 # Add Reselution Setter Script to sddm
 SDDM_XSETUP_DIR=/usr/share/sddm/scripts
 # Copy the script to the sddm scripts directory

@@ -2,7 +2,7 @@
 
 sudo apt update
 
-sudo apt install network-manager
+sudo apt install network-manager -y
 
 # Modify Netplan to use NetworkManager
 NETPLAN_FILE="/etc/netplan/01-netcfg.yaml"
