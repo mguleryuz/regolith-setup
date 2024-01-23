@@ -28,8 +28,8 @@ fi
 # Check the user's response
 if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
     sudo apt update
-    # Dependencies Installed in previous steps //  gpg, wget
-
+    # Dependencies
+    sudo apt install gpg wget curl -y
     # Register the Regolith public key to your local apt:
     wget -qO - https://regolith-desktop.org/regolith.key |
         gpg --dearmor | sudo tee /usr/share/keyrings/regolith-archive-keyring.gpg >/dev/null
