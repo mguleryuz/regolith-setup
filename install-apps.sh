@@ -26,7 +26,8 @@ sudo apt install gpg snapd apt-transport-https curl wget -y
 
 #Utils
 if [ "$install_utils" = "y" ]; then
-    sudo apt install p7zip-full p7zip-rar -y
+# TODO // p7zip-rar alternative
+    sudo apt install p7zip-full -y
     sudo snap install p7zip-desktop
     sudo snap install vlc
 fi

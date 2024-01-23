@@ -3,21 +3,16 @@
 #Prep
 sudo apt update
 
-sudo apt install curl wget -y
+#Dependencies
+sudo apt install snapd apt-transport-https -y
+#Tools
+sudo apt install git unzip synaptic viewnior gnome-terminal network-manager gnome-disk-utility nano nautilus gedit gnome-tweaks gparted gnome-system-monitor -y
 
-echo "Do you want to install: BUN and NVM ? (y/n)"
-read install_package_managers
-
-if [[ $install_package_managers == [yY] ]]; then
-    #Install BUN
+#Install BUN
     echo "Installing BUN and NVM..."
     curl -fsSL https://bun.sh/install | bash
 
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-fi
-
-#Dependencies
-sudo apt install git update-manager viewnior gnome-terminal network-manager gnome-disk-utility nano nautilus gedit gnome-tweaks gparted gnome-system-monitor -y
 
 #Initilize git
 echo "Initializing git..."

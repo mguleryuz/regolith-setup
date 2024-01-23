@@ -1,5 +1,7 @@
 #!/bin/bash
 
+script_path=$(dirname "$0")
+
 # Display a disclaimer
 echo "Disclaimer: This script is intended for first-time setup only. Please ensure you want to proceed."
 # Ask for confirmation
@@ -26,7 +28,7 @@ fi
 # Check the user's response
 if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
     sudo apt update
-    sudo apt install gpg wget -y
+    sudo apt install gpg curl wget -y
 
     # Register the Regolith public key to your local apt:
     wget -qO - https://regolith-desktop.org/regolith.key |
@@ -43,3 +45,12 @@ if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
 else
     echo "Setup cancelled."
 fi
+
+# Setup PKGS
+bash "$script_path/install-pkgs.sh"
+
+# Setup SDDM Display Manager
+bash "$script_path/setup-sddm.sh"
+
+
+echo "Initial Setup completed. Please reboot the system."

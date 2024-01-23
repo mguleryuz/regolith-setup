@@ -11,7 +11,7 @@ DEBIAN_FRONTEND=noninteractive sudo apt install -y sddm
 
 # Change the background of default theme
 BG_PATH="/usr/share/backgrounds/initial-background.png"
-THEME_CONF="/usr/share/sddm/themes/ubuntu-theme/theme.conf"
+THEME_CONF="/usr/share/sddm/themes/debian-theme/theme.conf"
 
 # Replace the background path in the theme.conf file
 sudo sed -i "s|background=.*|background=$BG_PATH|" $THEME_CONF

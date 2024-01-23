@@ -18,6 +18,7 @@ cd -
 >$HOME/.config/regolith3/Xresources
 
 #Set Backgrounds
+sudo mkdir -p /usr/share/backgrounds
 sudo cp $background_path /usr/share/backgrounds/initial-background.png
 
 echo "regolith.wallpaper.file: /usr/share/backgrounds/initial-background.png" >>$HOME/.config/regolith3/Xresources
@@ -29,9 +30,6 @@ for wm in sway i3; do
     echo "exec xgamma -gamma 0.9" >>$HOME/.config/regolith3/$wm/config.d/80_compositor
     echo "workspace_auto_back_and_forth yes" >>$HOME/.config/regolith3/i3/config.d/90-workspace-switch
 done
-
-#Set default lock ap as swaylock
-echo "wm.program.lock: /usr/bin/gtklock" >>~/.config/regolith3/Xresources
 
 #Set default terminal
 sudo update-alternatives --set x-terminal-emulator /usr/bin/gnome-terminal.wrapper

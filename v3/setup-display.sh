@@ -1,7 +1,6 @@
 #!/bin/bash
 
 script_path=$(dirname "$0")
-add_gnome_startup_command=$script_path/../utils/add_gnome_startup_command.sh
 add_and_set_resolution=$script_path/../utils/add-and-set-resolution.sh
 source $script_path/../utils/index.sh
 
@@ -22,9 +21,6 @@ read refresh_rate
 
 # Define the new DisplayCommand
 new_command="bash $SDDM_XSETUP_DIR/add-and-set-resolution.sh eDP-1 $width $height $refresh_rate"
-
-# Add gnome startup script
-add_gnome_startup_command "SetResolution" "Set the resolution to $width $height" "$new_command"
 
 # Update the DisplayCommand in the Xsetup file
 update_key_value "DisplayCommand=" "$new_command" "/usr/share/sddm/scripts/Xsetup"
