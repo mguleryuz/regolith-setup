@@ -26,7 +26,7 @@ fi
 # Check the user's response
 if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
     sudo apt update
-    sudo apt install wget -y
+    sudo apt install gpg wget -y
 
     # Register the Regolith public key to your local apt:
     wget -qO - https://regolith-desktop.org/regolith.key |
@@ -34,7 +34,7 @@ if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
 
     # Add the repository URL to your local apt:
     echo deb "[arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] \
-    https://regolith-desktop.org/release-3_0-ubuntu-lunar-amd64 lunar main" |
+    https://regolith-desktop.org/release-3_0-debian-bookworm-amd64 bookworm main" |
         sudo tee /etc/apt/sources.list.d/regolith.list
 
     # Update apt and install Regolith
