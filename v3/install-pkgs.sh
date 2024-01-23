@@ -3,6 +3,19 @@
 #Prep
 sudo apt update
 
+sudo apt install curl wget -y
+
+echo "Do you want to install: BUN and NVM ? (y/n)"
+read install_package_managers
+
+if [[ $install_package_managers == [yY] ]]; then
+    #Install BUN
+    echo "Installing BUN and NVM..."
+    curl -fsSL https://bun.sh/install | bash
+
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+fi
+
 #Dependencies
 sudo apt install git update-manager viewnior gnome-terminal network-manager gnome-disk-utility nano nautilus gedit gnome-tweaks gparted gnome-system-monitor -y
 
