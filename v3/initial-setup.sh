@@ -1,5 +1,7 @@
 #!/bin/bash
 
+script_path=$(dirname "$0")
+
 # Display a disclaimer
 echo "Disclaimer: This script is intended for first-time setup only. Please ensure you want to proceed."
 # Ask for confirmation
@@ -26,15 +28,15 @@ fi
 # Check the user's response
 if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
     sudo apt update
-    sudo apt install wget -y
-
+    # Dependencies
+    sudo apt install gpg wget curl -y
     # Register the Regolith public key to your local apt:
     wget -qO - https://regolith-desktop.org/regolith.key |
         gpg --dearmor | sudo tee /usr/share/keyrings/regolith-archive-keyring.gpg >/dev/null
 
     # Add the repository URL to your local apt:
     echo deb "[arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] \
-    https://regolith-desktop.org/release-3_0-ubuntu-lunar-amd64 lunar main" |
+    https://regolith-desktop.org/release-3_0-debian-bookworm-amd64 bookworm main" |
         sudo tee /etc/apt/sources.list.d/regolith.list
 
     # Update apt and install Regolith
@@ -43,3 +45,11 @@ if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
 else
     echo "Setup cancelled."
 fi
+
+# Setup PKGS
+bash "$script_path/install-pkgs.sh"
+
+# Setup SDDM Display Manager
+bash "$script_path/setup-sddm.sh"
+
+echo "Initial Setup completed. Please reboot the system."

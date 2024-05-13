@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Get the directory of the currently running script
 script_path=$(dirname "$0")
 source $script_path/utils/index.sh
 
@@ -21,12 +22,12 @@ read install_vscode
 echo "Do you want to install: 1Password ? (y/n)"
 read install_1password
 
-#Dependencies // snapd:all, wget:all curl:all, apt-transport-https:vscode, gpg:vscode
-sudo apt install gpg snapd apt-transport-https curl wget -y
+#Dependencies Installed in previous steps // snapd:all, wget:all curl:all, apt-transport-https:vscode, gpg:vscode
 
 #Utils
 if [ "$install_utils" = "y" ]; then
-    sudo apt install p7zip-full p7zip-rar -y
+    # TODO // p7zip-rar alternative
+    sudo apt install p7zip-full -y
     sudo snap install p7zip-desktop
     sudo snap install vlc
 fi

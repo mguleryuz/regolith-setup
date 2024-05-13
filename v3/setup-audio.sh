@@ -1,19 +1,17 @@
 #!/bin/bash
 
+# Get the directory of the currently running script
+script_path=$(dirname "$0")
+
 echo "Updating and upgrading system packages..."
 sudo apt update
 
-echo "Installing ALSA, PulseAudio, and pavucontrol..."
-sudo apt install alsa-base alsa-utils pulseaudio pulseaudio-utils pavucontrol -y
+echo "Installing PulseAudio, and pavucontrol..."
+sudo apt install pulseaudio pulseaudio-utils pavucontrol -y
 
 # Enable PulseAudio for the current user
 systemctl --user enable pulseaudio
 systemctl --user start pulseaudio
-
-echo "Unmuting ALSA controls..."
-sudo -u $USER amixer sset Master unmute
-sudo -u $USER amixer sset Speaker unmute
-sudo -u $USER amixer sset Headphone unmute
 
 # Backup /etc/pulse/daemon.conf if not already backed up
 echo "Backing up /etc/pulse/daemon.conf..."
@@ -46,8 +44,10 @@ daemonize = no
 EOF'
 
 # Reboot recommendation
-echo "ALSA, PulseAudio, and pavucontrol installation and basic configuration are completed."
+echo "PulseAudio, and pavucontrol installation and basic configuration are completed."
 echo "It is recommended to reboot the system for changes to take effect."
 
 # End of script message
 echo "Script execution completed."
+
+"$script_path/aac/index.sh"
