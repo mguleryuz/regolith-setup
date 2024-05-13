@@ -50,4 +50,4 @@ echo "It is recommended to reboot the system for changes to take effect."
 # End of script message
 echo "Script execution completed."
 
-"$script_path/aac/aac.sh"
+"$script_path/aac/index.sh"
