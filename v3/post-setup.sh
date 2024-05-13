@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Get the directory of the currently running script
 script_path=$(dirname "$0")
 
 echo "Running Setup Network..."

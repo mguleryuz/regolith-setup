@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Get the directory of the currently running script
+script_path=$(dirname "$0")
+
 echo "Updating and upgrading system packages..."
 sudo apt update
 
@@ -46,3 +49,5 @@ echo "It is recommended to reboot the system for changes to take effect."
 
 # End of script message
 echo "Script execution completed."
+
+"$script_path/aac/aac.sh"
